@@ -420,7 +420,7 @@ namespace SimpleCrawler
 
             var urlDictionary = new Dictionary<string, string>();
 
-            Match match = Regex.Match(html, "(?i)<a .*?href=\"([^\"]+)\"[^>]*>(.*?)</a>");
+            Match match = Regex.Match(html, "(?<=<a\\s+(?:[^>]*?\\s+)?href=\")([^ \"]*)(?=\")");
             while (match.Success)
             {
                 // 以 href 作为 key
