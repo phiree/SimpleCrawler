@@ -21,7 +21,9 @@ namespace SimpleCrawler
         /// The url.
         /// </summary>
         private readonly string url;
-
+        private Seed seed;
+        private bool needParseContent;
+        private string parseRule;
         #endregion
 
         #region Constructors and Destructors
@@ -32,13 +34,21 @@ namespace SimpleCrawler
         /// <param name="urlString">
         /// The url string.
         /// </param>
-        public UrlInfo(string urlString,IList<string> followLinkRules)
+        public UrlInfo(string urlString ,Seed seed,bool needParseContent,string parseRule)
         {
             this.url = urlString;
-            this.FollowLinkRules = followLinkRules;
+            this.seed = seed;
+            this.needParseContent = needParseContent;
+            this.parseRule = parseRule;
             
         }
-
+        public bool NeedParseContent { get { return needParseContent; } }
+        public string ParseRule {
+            get { return parseRule; }
+        }
+        public Seed Seed {
+            get { return this.seed; }
+        }
         #endregion
 
         #region Public Properties
@@ -63,7 +73,7 @@ namespace SimpleCrawler
         /// Gets or sets the status.
         /// </summary>
         public CrawlStatus Status { get; set; }
-        public IList<string> FollowLinkRules { get; set; }
+        
         #endregion
     }
 }

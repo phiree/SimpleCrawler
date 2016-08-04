@@ -25,7 +25,7 @@ namespace SimpleCrawler.Demo
 
         /// <summary>
         /// The filter.
-        /// 关于使用 Bloom 算法去除重复 URL：http://www.cnblogs.com/heaad/archive/2011/01/02/1924195.html
+        /// 关于使用 Bloom 算法去除重复 URL
         /// </summary>
         private static BloomFilter<string> filter;
 
@@ -45,7 +45,8 @@ namespace SimpleCrawler.Demo
             const string CityName = "beijing";
 
             // 设置种子地址
-            Settings.SeedsAddress.Add(string.Format("http://jobs.zhaopin.com/{0}", CityName));
+            Settings.Seeds.Add("http://www.ctszj.com.cn/domestic_tours.php?page=1"
+                , new string[] { @"route\.php\?gid=\d+",@"domestic_tours\.php\?page=\d+" });
 
             // 设置 URL 关键字
             Settings.HrefKeywords.Add(string.Format("/{0}/bj", CityName));
@@ -112,6 +113,8 @@ namespace SimpleCrawler.Demo
         /// </param>
         private static void MasterDataReceivedEvent(DataReceivedEventArgs args)
         {
+            Console.WriteLine("下载完毕:" + args.Url);
+            
             // 在此处解析页面，可以用类似于 HtmlAgilityPack（页面解析组件）的东东、也可以用正则表达式、还可以自己进行字符串分析
         }
 

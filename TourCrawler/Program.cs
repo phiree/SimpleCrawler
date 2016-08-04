@@ -9,11 +9,13 @@
 
 namespace SimpleCrawler.Demo
 {
+    using TourParser;
     using SimpleCrawler;
     using System.Collections;
     using System.Collections.Generic;
     using System;
     using System.Collections;
+    using global::TourCrawler;
 
     /// <summary>
     /// The program.
@@ -32,9 +34,9 @@ namespace SimpleCrawler.Demo
         /// 关于使用 Bloom 算法去除重复 URL： 
         /// </summary>
         private static BloomFilter<string> filter;
-
+        private static IList<KeyWord> keywords = new List<KeyWord> { new KeyWord { Keyword="瑶琳仙境" } };
         #endregion
-
+        private static Guid CrawlerId = Guid.NewGuid();
         #region Methods
 
         /// <summary>
@@ -56,15 +58,34 @@ namespace SimpleCrawler.Demo
                 );
             */
             Settings.Seeds.Add(
-                new Seed { Name= "浙江省中国旅行社集团有限公司",
-                Url= "http://www.ctszj.com.cn/domestic_tours.php?page=1",
-                            FollowLinkRules = new List<FollowLink>() { new FollowLink(),new  FollowLink() },
-                             ContentParseRules=""
-                }
+                new Seed
+                {
+                    Name = "中国国旅(浙江)国际旅行社有限公司",
+                    StartUrl = "http://www.cits.cn/dest/cof-t14001000850.html",
+                    FollowLinkRules = new List<FollowLinkRule>() {
+                        new FollowLinkRule(@"outboundgroup/\d+\.htm",true,"h1.protit"),
+                        new FollowLinkRule(@"dest/cof-t\d+-p\d+\.html",false) },
+                    ContentParseRules="",
                    
+                }
+
                 );
-                
-            
+
+            //Settings.Seeds.Add(
+            //    new Seed
+            //    {
+            //        Name = "浙江省中国旅行社集团有限公司",
+            //        StartUrl = "http://www.ctszj.com.cn/domestic_tours.php?page=1",
+            //        FollowLinkRules = new List<FollowLinkRule>() {
+            //            new FollowLinkRule(@"route\.php\?gid=",true,".cjxl>p"),
+            //            new FollowLinkRule(@"page=",false) },
+            //        ContentParseRules="",
+                   
+            //    }
+
+            //    );
+
+
             // 设置 URL 关键字
 
 
@@ -114,7 +135,7 @@ namespace SimpleCrawler.Demo
             if (!filter.Contains(args.Url))
             {
                 filter.Add(args.Url);
-                Console.WriteLine(addedLinksAmount+ args.Url);
+                Console.WriteLine(addedLinksAmount + args.Url);
                 addedLinksAmount++;
                 return true;
             }
@@ -130,8 +151,22 @@ namespace SimpleCrawler.Demo
         /// </param>
         private static void MasterDataReceivedEvent(DataReceivedEventArgs args)
         {
-            
-            Console.WriteLine(downloadedPageAmount+ "下载完毕:" + args.Url);
+
+            Console.WriteLine(downloadedPageAmount + "下载完毕:" + args.Url);
+            ITargetContentParser parser = new TargetContentParserAgilityPack(args.PraseSelector);
+            if (args.NeedParseContent)
+            {
+                string parsedContent = parser.Parse(args.Html);
+                Console.WriteLine( "提取内容:" + parsedContent);
+                string finalResult = string.Format("{0},{1},{2},{3},{4}"
+                            , CrawlerId, args.SeedId, args.Url,
+                            parsedContent, DateTime.Now);
+                System.IO.File.AppendAllText("爬取结果.txt", finalResult+Environment.NewLine);
+                //是否包含关键字
+                
+            }
+
+
             downloadedPageAmount++;
             // 在此处解析页面，可以用类似于 HtmlAgilityPack（页面解析组件）的东东、也可以用正则表达式、还可以自己进行字符串分析
         }
