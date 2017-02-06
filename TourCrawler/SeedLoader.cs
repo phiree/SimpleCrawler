@@ -8,9 +8,6 @@ namespace TourCrawler
 {
     public   class SeedLoader
     {
-        public IList<Seed> Load()
-        {
-
-        }
+        
     }
 }

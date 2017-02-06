@@ -34,8 +34,7 @@ namespace SimpleCrawler.Demo
         /// 关于使用 Bloom 算法去除重复 URL： 
         /// </summary>
         private static BloomFilter<string> filter;
-        private static IList<KeyWord> keywords = new List<KeyWord> { new KeyWord { Keyword="瑶琳仙境" } };
-        #endregion
+          #endregion
         private static Guid CrawlerId = Guid.NewGuid();
         #region Methods
 
@@ -60,11 +59,11 @@ namespace SimpleCrawler.Demo
             Settings.Seeds.Add(
                 new Seed
                 {
-                    Name = "中国国旅(浙江)国际旅行社有限公司",
-                    StartUrl = "http://www.cits.cn/dest/cof-t14001000850.html",
+                    Name = "山东",
+                    StartUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/index.html",
                     FollowLinkRules = new List<FollowLinkRule>() {
-                        new FollowLinkRule(@"outboundgroup/\d+\.htm",true,"h1.protit"),
-                        new FollowLinkRule(@"dest/cof-t\d+-p\d+\.html",false) },
+                        new FollowLinkRule(@"(?<=<a href=')\d+\.html(?='>.+?<br/></a>)",true,
+                        @"(?<=<tr\sclass=""citytr""><td><a href="")\d+/\d+\.html(?="">)")},
                     ContentParseRules="",
                    
                 }

@@ -28,7 +28,11 @@ namespace SimpleCrawler
             get { return needParseContent; }
         }
         private string parseSelector;
+        /// <summary>
+        /// 页面内容提取regex
+        /// </summary>
         public string ParseSelector { get { return parseSelector; } }
+         
 
         #endregion
 

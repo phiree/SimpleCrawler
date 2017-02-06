@@ -27,7 +27,7 @@ namespace TourParser
             var parser = new HtmlParser();
             var doc = parser.Parse(rawHtml);
             var cssSelector = doc.QuerySelector(parseRule);
-            result=cssSelector.TextContent;
+            result=cssSelector. TextContent;
             return result;
         }
 
