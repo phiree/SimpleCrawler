@@ -245,10 +245,13 @@ namespace SimpleCrawler
                             {
                                 this.DataReceivedEvent(
                                     new DataReceivedEventArgs
-                                        {
-                                            Url = urlInfo.UrlString, 
-                                            Depth = urlInfo.Depth, 
-                                            Html = html
+                                    {
+                                        Url = urlInfo.UrlString,
+                                        Depth = urlInfo.Depth,
+                                        Html = html,
+                                        SeedId=urlInfo.Seed.SeedId,
+                                        NeedParseContent=urlInfo.NeedParseContent
+                                        ,PraseSelector=urlInfo.ParseRule
                                         });
                             }
 
@@ -290,13 +293,13 @@ namespace SimpleCrawler
         /// </summary>
         private void Initialize()
         {
-            if (this.Settings.SeedsAddress != null && this.Settings.SeedsAddress.Count > 0)
+            if (this.Settings.Seeds != null && this.Settings.Seeds.Count > 0)
             {
-                foreach (var seed in this.Settings.SeedsAddress)
+                foreach (var seed in this.Settings.Seeds)
                 {
-                    if (Regex.IsMatch(seed.Key, WebUrlRegularExpressions, RegexOptions.IgnoreCase))
+                    if (Regex.IsMatch(seed.StartUrl, WebUrlRegularExpressions, RegexOptions.IgnoreCase))
                     {
-                        UrlQueue.Instance.EnQueue(new UrlInfo(seed.Key,seed.Value) { Depth = 1 });
+                        UrlQueue.Instance.EnQueue(new UrlInfo(seed.StartUrl, seed, false,string.Empty) { Depth = 1 });
                     }
                 }
             }
@@ -420,7 +423,7 @@ namespace SimpleCrawler
 
             var urlDictionary = new Dictionary<string, string>();
 
-            Match match = Regex.Match(html, "(?<=<a\\s+(?:[^>]*?\\s+)?href=\")([^ \"]*)(?=\")");
+            Match match = Regex.Match(html, "(?<=<a\\s+?href=')(.+?)(?='>.+?</a>)");
             while (match.Success)
             {
                 // 以 href 作为 key
@@ -450,12 +453,23 @@ namespace SimpleCrawler
                         }
                     }
 
-                    if (urlInfo.FollowLinkRules != null && urlInfo.FollowLinkRules.Count>0)
+                    bool needParseContent = false;
+                    string parseSelector = string.Empty;
+                    if (urlInfo.Seed.FollowLinkRules != null && urlInfo.Seed.FollowLinkRules.Count>0)
                     {
-                        if (!urlInfo.FollowLinkRules.Any(href.Contains))
+                        bool isMatchFollowRule = false;
+                        foreach (FollowLinkRule followRule in urlInfo.Seed.FollowLinkRules)
                         {
-                            canBeAdd = false;
+                            if (Regex.IsMatch(href, followRule.Rule))
+                            {
+
+                                isMatchFollowRule = true;
+                                needParseContent = followRule.NeedParseContent;
+                                parseSelector = followRule.ParseSelector;
+                            }
+                            
                         }
+                        canBeAdd = isMatchFollowRule;
                     }
 
                     if (canBeAdd)
@@ -501,7 +515,7 @@ namespace SimpleCrawler
                             continue;
                         }
 
-                        UrlQueue.Instance.EnQueue(new UrlInfo(url,urlInfo.FollowLinkRules) { Depth = urlInfo.Depth + 1 });
+                        UrlQueue.Instance.EnQueue(new UrlInfo(url,urlInfo.Seed,needParseContent,parseSelector) { Depth = urlInfo.Depth + 1 });
                     }
                 }
             }

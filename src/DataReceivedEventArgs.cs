@@ -40,6 +40,9 @@ namespace SimpleCrawler
         /// Gets or sets the url.
         /// </summary>
         public string Url { get; set; }
+        public Guid  SeedId { get; set; }
+        public bool NeedParseContent { get; set; }
+       public string PraseSelector { get; set; }
 
         #endregion
     }
