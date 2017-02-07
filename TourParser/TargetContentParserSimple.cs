@@ -11,11 +11,9 @@ namespace TourParser
    public class TargetContentParserSimple:ITargetContentParser
     {
         
-         public string  Parse(string rawHtml)
+         public IList<string>  Parse(string rawHtml)
         {
-            var result = string.Empty;
-            result = rawHtml.Substring(0, 100);
-            return result;
+            throw new  NotImplementedException();
         }
 
  

@@ -56,14 +56,16 @@ namespace SimpleCrawler.Demo
                 , new string[] { "route.php?gid=" }
                 );
             */
+            
             Settings.Seeds.Add(
                 new Seed
                 {
                     Name = "山东",
                     StartUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/index.html",
                     FollowLinkRules = new List<FollowLinkRule>() {
-                        new FollowLinkRule(@"(?<=<a href=')\d+\.html(?='>.+?<br/></a>)",true,
-                        @"(?<=<tr\sclass=""citytr""><td><a href="")\d+/\d+\.html(?="">)")},
+                        new FollowLinkRule(@"\d+\.html",true,"tr.citytr>td>a[href$='html'],tr.countytr>td>a[href$='html'],tr.towntr>td>a[href$='html'],tr.villagetr>td>a[href$='html']"
+                         )
+                       },
                     ContentParseRules="",
                    
                 }
@@ -142,6 +144,7 @@ namespace SimpleCrawler.Demo
             return false; // 返回 false 代表：不添加到队列中
         }
         static int downloadedPageAmount;
+        static string fileName = DateTime.Now.ToString("yyyyMMddhhmmss") + ".txt";
         /// <summary>
         /// The master data received event.
         /// </summary>
@@ -155,14 +158,29 @@ namespace SimpleCrawler.Demo
             ITargetContentParser parser = new TargetContentParserAgilityPack(args.PraseSelector);
             if (args.NeedParseContent)
             {
-                string parsedContent = parser.Parse(args.Html);
-                Console.WriteLine( "提取内容:" + parsedContent);
-                string finalResult = string.Format("{0},{1},{2},{3},{4}"
-                            , CrawlerId, args.SeedId, args.Url,
-                            parsedContent, DateTime.Now);
-                System.IO.File.AppendAllText("爬取结果.txt", finalResult+Environment.NewLine);
-                //是否包含关键字
+               IList<string> parsedContentList = parser.Parse(args.Html);
+                Dictionary<string, string> areaPaire = new Dictionary<string, string>();
+                for(int i=1;i<=parsedContentList.Count;i=i+2)// string parsedContent in parsedContentList )
+                {
+                    string key = parsedContentList[i - 1];
+                    string value = parsedContentList[i];
+                    areaPaire.Add(key, value);
+
+              
+                    //是否包含关键字
+                }
                 
+                
+                foreach (var item in areaPaire)
+                {
+
+                    string aa = string.Format("{{AreaCode:\"{0}\",AreaName:\"{1}\"}},", item.Key,item.Value)+Environment.NewLine;
+
+                    System.IO.File.AppendAllText(fileName, aa);
+
+                }
+               
+
             }
 
 

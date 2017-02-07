@@ -10,9 +10,7 @@ namespace TourParser
     /// </summary>
    public interface ITargetContentParser
     {
-
-           
-          string Parse(string rawHtml);
+          IList<string> Parse(string rawHtml);
     }
     
 }

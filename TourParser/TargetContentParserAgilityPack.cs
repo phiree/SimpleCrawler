@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
- 
+
 using AngleSharp;
 using AngleSharp.Parser.Html;
+using AngleSharp.Dom;
 
 namespace TourParser
 {
@@ -19,15 +20,15 @@ namespace TourParser
         {
             this.parseRule = parseRule;
         }
-         public string  Parse(string rawHtml)
+         public IList<string> Parse(string rawHtml)
         {
-            var result = string.Empty;
-            
+            IList<string> result;
+
             //  doc.DocumentNode.SelectSingleNode("//")
             var parser = new HtmlParser();
             var doc = parser.Parse(rawHtml);
-            var cssSelector = doc.QuerySelector(parseRule);
-            result=cssSelector. TextContent;
+            var cssSelector = doc.QuerySelectorAll(parseRule);
+            result = cssSelector.Select(x => x.InnerHtml).ToList();
             return result;
         }
 
