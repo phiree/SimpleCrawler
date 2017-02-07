@@ -144,7 +144,8 @@ namespace SimpleCrawler.Demo
             return false; // 返回 false 代表：不添加到队列中
         }
         static int downloadedPageAmount;
-        static string fileName = DateTime.Now.ToString("yyyyMMddhhmmss") + ".txt";
+        static string fileName = DateTime.Now.ToString("yyyyMMddhhmmss") + "Json.txt";
+        static string simpleFileName = DateTime.Now.ToString("yyyyMMddhhmmss") + "Plain.txt";
         /// <summary>
         /// The master data received event.
         /// </summary>
@@ -162,8 +163,11 @@ namespace SimpleCrawler.Demo
                 Dictionary<string, string> areaPaire = new Dictionary<string, string>();
                 for(int i=1;i<=parsedContentList.Count;i=i+2)// string parsedContent in parsedContentList )
                 {
+                    
                     string key = parsedContentList[i - 1];
                     string value = parsedContentList[i];
+                    if (value == "市辖区" || value == "县") { continue; }
+
                     areaPaire.Add(key, value);
 
               
@@ -174,9 +178,11 @@ namespace SimpleCrawler.Demo
                 foreach (var item in areaPaire)
                 {
 
-                    string aa = string.Format("{{AreaCode:\"{0}\",AreaName:\"{1}\"}},", item.Key,item.Value)+Environment.NewLine;
-
+                    string aa = string.Format("{{\"AreaCode\":\"{0}\",\"AreaName\":\"{1}\"}},", item.Key,item.Value)+Environment.NewLine;
+                    
                     System.IO.File.AppendAllText(fileName, aa);
+                    string simple = item.Key + " " + item.Value+Environment.NewLine;
+                    System.IO.File.AppendAllText(simpleFileName, simple);
 
                 }
                
