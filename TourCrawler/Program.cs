@@ -63,7 +63,7 @@ namespace SimpleCrawler.Demo
                     Name = "山东",
                     StartUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/index.html",
                     FollowLinkRules = new List<FollowLinkRule>() {
-                        new FollowLinkRule(@"\d+\.html",true,"tr.citytr>td>a[href$='html'],tr.countytr>td>a[href$='html'],tr.towntr>td>a[href$='html'],tr.villagetr>td>a[href$='html']"
+                        new FollowLinkRule(@"\d+\.html",true,"tr.citytr>td>a[href$='html'],tr.countytr>td>a[href$='html'],tr.towntr>td>a[href$='html'],tr.villagetr>td:nth-child(odd)"
                          )
                        },
                     ContentParseRules="",

@@ -208,6 +208,7 @@ namespace SimpleCrawler
 
                     // 创建并配置Web请求
                     request = WebRequest.Create(urlInfo.UrlString) as HttpWebRequest;
+                  //  request.RequestUri.AbsolutePath
                     this.ConfigRequest(request);
 
                     if (request != null)
@@ -428,6 +429,8 @@ namespace SimpleCrawler
             {
                 // 以 href 作为 key
                 string urlKey = match.Groups[1].Value;
+                //如果href 是相对路径,需要补全当前路径
+
 
                 // 以 text 作为 value
                 string urlValue = Regex.Replace(match.Groups[2].Value, "(?i)<.*?>", string.Empty);
