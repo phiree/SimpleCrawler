@@ -20,6 +20,10 @@ namespace TourParser
         {
             this.parseRule = parseRule;
         }
+        public static string ParsePlainText(string str)
+        {
+            return System.Text.RegularExpressions.Regex.Replace(str, "<[^>]*>", string.Empty);
+        }
          public IList<string> Parse(string rawHtml)
         {
             IList<string> result;

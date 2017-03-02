@@ -15,6 +15,7 @@ namespace SimpleCrawler.Demo
     using System.Collections.Generic;
     using System;
     using System.Collections;
+    using System.Text.RegularExpressions;
     using global::TourCrawler;
 
     /// <summary>
@@ -56,21 +57,37 @@ namespace SimpleCrawler.Demo
                 , new string[] { "route.php?gid=" }
                 );
             */
-            
-            Settings.Seeds.Add(
-                new Seed
-                {
-                    Name = "山东",
-                    StartUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/index.html",
-                    FollowLinkRules = new List<FollowLinkRule>() {
-                        new FollowLinkRule(@"\d+\.html",true,"tr.citytr>td>a[href$='html'],tr.countytr>td>a[href$='html'],tr.towntr>td>a[href$='html'],tr.villagetr>td:nth-child(odd)"
-                         )
-                       },
-                    ContentParseRules="",
-                   
-                }
 
-                );
+            //Settings.Seeds.Add(
+            //    new Seed
+            //    {
+            //        Name = "全国行政编码",
+            //        StartUrl = "http://www.stats.gov.cn/tjsj/tjbz/tjyqhdmhcxhfdm/2015/index.html",
+            //        FollowLinkRules = new List<FollowLinkRule>() {
+            //            new FollowLinkRule(@"\d+\.html",true,"tr.citytr>td>a[href$='html'],tr.countytr>td>a[href$='html'],tr.towntr>td>a[href$='html'],tr.villagetr>td:nth-child(odd)"
+            //             )
+            //           },
+            //        ContentParseRules="",
+
+            //    }
+
+            //    );
+
+            Settings.Seeds.Add(
+              new Seed
+              {
+                  Name = "全国邮政编码",
+                  
+                  StartUrl = "http://www.ip138.com/post/",
+                  FollowLinkRules = new List<FollowLinkRule>() {
+                        new FollowLinkRule(@"/(\d{2}|xianggang|aomen|taiwan)/",true,"table.t12>tbody>tr[bgcolor='#ffffff']"
+                         )
+                     },
+                  ContentParseRules = "",
+
+              }
+
+              );
 
             //Settings.Seeds.Add(
             //    new Seed
@@ -81,7 +98,7 @@ namespace SimpleCrawler.Demo
             //            new FollowLinkRule(@"route\.php\?gid=",true,".cjxl>p"),
             //            new FollowLinkRule(@"page=",false) },
             //        ContentParseRules="",
-                   
+
             //    }
 
             //    );
@@ -94,7 +111,7 @@ namespace SimpleCrawler.Demo
             Settings.ThreadCount = 5;
 
             // 设置爬取深度
-            Settings.Depth = 7;
+            Settings.Depth = 2;
 
             // 设置爬取时忽略的 Link，通过后缀名的方式，可以添加多个
             Settings.EscapeLinks.Add(".jpg");
@@ -116,7 +133,8 @@ namespace SimpleCrawler.Demo
             // settings.RegularFilterExpressions.Add("");
             var master = new CrawlMaster(Settings);
             master.AddUrlEvent += MasterAddUrlEvent;
-            master.DataReceivedEvent += MasterDataReceivedEvent;
+          //  master.DataReceivedEvent += MasterDataReceivedEventAreaCode;
+            master.DataReceivedEvent += MasterDataReceivedEventPostCode;
             master.Crawl();
 
             Console.ReadKey();
@@ -152,7 +170,7 @@ namespace SimpleCrawler.Demo
         /// <param name="args">
         /// The args.
         /// </param>
-        private static void MasterDataReceivedEvent(DataReceivedEventArgs args)
+        private static void MasterDataReceivedEventAreaCode(DataReceivedEventArgs args)
         {
 
             Console.WriteLine(downloadedPageAmount + "下载完毕:" + args.Url);
@@ -193,7 +211,73 @@ namespace SimpleCrawler.Demo
             downloadedPageAmount++;
             // 在此处解析页面，可以用类似于 HtmlAgilityPack（页面解析组件）的东东、也可以用正则表达式、还可以自己进行字符串分析
         }
+        private static void MasterDataReceivedEventPostCode(DataReceivedEventArgs args)
+        {
 
+            Console.WriteLine(downloadedPageAmount + "下载完毕:" + args.Url);
+            ITargetContentParser parser = new TargetContentParserAgilityPack(args.PraseSelector);
+            if (args.NeedParseContent)
+            {
+                IList<string> parsedContentList = parser.Parse(args.Html);
+
+
+                Dictionary<string, string> areaPaire = new Dictionary<string, string>();
+                IList<PostCodeAndPhonePre> PostCodeResults = new List<PostCodeAndPhonePre>();
+                for (int i = 0; i < parsedContentList.Count; i++)// string parsedContent in parsedContentList )
+                {
+                    string rowContent = parsedContentList[i];
+                    ITargetContentParser parserdetail = new TargetContentParserAgilityPack("td");
+                    MatchCollection matches = Regex.Matches(rowContent, "<td>(.+?)</td>");
+                   
+                    if (matches.Count == 4|| matches.Count==6)
+                    {
+                        
+                        PostCodeAndPhonePre oneResult = new PostCodeAndPhonePre();
+                        oneResult.AreaName = matches[0].Groups[1].Value;
+                        oneResult.AreaPostCode =TargetContentParserAgilityPack.ParsePlainText(matches[1].Groups[1].Value);
+                        oneResult.AreaPhonePre = TargetContentParserAgilityPack.ParsePlainText(matches[2].Groups[1].Value);
+                        PostCodeResults.Add(oneResult);
+                        if (matches.Count  == 6)
+                        {
+                            PostCodeAndPhonePre oneResult2 = new PostCodeAndPhonePre();
+                            oneResult2.AreaName = matches[3].Groups[1].Value;
+                            oneResult2.AreaPostCode = TargetContentParserAgilityPack.ParsePlainText(matches[4].Groups[1].Value);
+                            oneResult2.AreaPhonePre = TargetContentParserAgilityPack.ParsePlainText(matches[5].Groups[1].Value);
+                            PostCodeResults.Add(oneResult2);
+                        }
+                    }
+                    
+
+
+                    //是否包含关键字
+                }
+
+
+                foreach (var item in PostCodeResults)
+                {
+
+                    string aa = string.Format("{{\"AreaName\":\"{0}\",\"PostCode\":\"{1}\",,\"PhoneCode\":\"{2}\"}},", item.AreaName, item.AreaPostCode,item.AreaPhonePre) + Environment.NewLine;
+
+                    System.IO.File.AppendAllText(fileName, aa);
+                    string simple = item.AreaName + " " + item.AreaPostCode+"  "+item.AreaPhonePre + Environment.NewLine;
+                    System.IO.File.AppendAllText(simpleFileName, simple);
+
+                }
+
+
+            }
+
+
+            downloadedPageAmount++;
+            // 在此处解析页面，可以用类似于 HtmlAgilityPack（页面解析组件）的东东、也可以用正则表达式、还可以自己进行字符串分析
+        }
+
+        public class PostCodeAndPhonePre
+        {
+            public string AreaName { get; set; }
+            public string AreaPostCode { get; set; }
+            public string AreaPhonePre { get; set; }
+        }
         #endregion
     }
 }
