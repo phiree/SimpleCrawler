@@ -73,15 +73,44 @@ namespace SimpleCrawler.Demo
 
             //    );
 
+            //Settings.Seeds.Add(
+            //  new Seed
+            //  {
+            //      Name = "全国邮政编码",
+
+            //      StartUrl = "http://www.ip138.com/post/",
+            //      FollowLinkRules = new List<FollowLinkRule>() {
+            //            new FollowLinkRule(@"/(\d{2}|xianggang|aomen|taiwan)/",true,"table.t12>tbody>tr[bgcolor='#ffffff']"
+            //             )
+            //         },
+            //      ContentParseRules = "",
+
+            //  }
+
+            //  );
+
+
+
             Settings.Seeds.Add(
               new Seed
               {
-                  Name = "全国邮政编码",
-                  
-                  StartUrl = "http://www.ip138.com/post/",
+                  Name = "全国行政编码_邮编_区号_车牌",
+
+                  StartUrl = "http://diqudaima.com/",
                   FollowLinkRules = new List<FollowLinkRule>() {
-                        new FollowLinkRule(@"/(\d{2}|xianggang|aomen|taiwan)/",true,"table.t12>tbody>tr[bgcolor='#ffffff']"
-                         )
+                      //第一级, 不需要分析内容.
+                       new FollowLinkRule(@"(^/([^/]+?/)$)",false,string.Empty),
+                        //第二级, 也不需要分析内容.
+
+                        new FollowLinkRule(@"^/[^/]+?/[^/]+?/index\.html",true, "div.all3"),
+                        //第三级, 
+                          new FollowLinkRule(@"^/[^/]+?/[^/]+?/[^/]+?/$",true, "div.all2"),
+                          //第四级别
+                           new FollowLinkRule(@"^/address/\d+?\.html$",true, "div.all3")
+                              //第五级别
+                           //new FollowLinkRule(string.Empty,true,
+                           //"div.all3>ul>li,div.all3>table>tbody"),
+
                      },
                   ContentParseRules = "",
 
@@ -111,7 +140,7 @@ namespace SimpleCrawler.Demo
             Settings.ThreadCount = 5;
 
             // 设置爬取深度
-            Settings.Depth = 2;
+            Settings.Depth = 7;
 
             // 设置爬取时忽略的 Link，通过后缀名的方式，可以添加多个
             Settings.EscapeLinks.Add(".jpg");
@@ -133,8 +162,9 @@ namespace SimpleCrawler.Demo
             // settings.RegularFilterExpressions.Add("");
             var master = new CrawlMaster(Settings);
             master.AddUrlEvent += MasterAddUrlEvent;
-          //  master.DataReceivedEvent += MasterDataReceivedEventAreaCode;
-            master.DataReceivedEvent += MasterDataReceivedEventPostCode;
+            //  master.DataReceivedEvent += MasterDataReceivedEventAreaCode;
+            // master.DataReceivedEvent += MasterDataReceivedEventPostCode;
+            master.DataReceivedEvent += MasterDataReceivedEventDiqubianma;
             master.Crawl();
 
             Console.ReadKey();
@@ -261,6 +291,35 @@ namespace SimpleCrawler.Demo
                     System.IO.File.AppendAllText(fileName, aa);
                     string simple = item.AreaName + " " + item.AreaPostCode+"  "+item.AreaPhonePre + Environment.NewLine;
                     System.IO.File.AppendAllText(simpleFileName, simple);
+
+                }
+
+
+            }
+
+
+            downloadedPageAmount++;
+            // 在此处解析页面，可以用类似于 HtmlAgilityPack（页面解析组件）的东东、也可以用正则表达式、还可以自己进行字符串分析
+        }
+
+        private static void MasterDataReceivedEventDiqubianma(DataReceivedEventArgs args)
+        {
+
+            Console.WriteLine(downloadedPageAmount + "下载完毕:" + args.Url);
+            ITargetContentParser parser = new TargetContentParserAgilityPack(args.PraseSelector);
+            if (args.NeedParseContent)
+            {
+                IList<string> parsedContentList = parser.Parse(args.Html);
+
+ 
+                for (int i = 0; i < parsedContentList.Count; i++)// string parsedContent in parsedContentList )
+                {
+                    string parsedContent = parsedContentList[i]
+                        +Environment.NewLine+"---------------------------------------------------------"+Environment.NewLine;
+
+                   
+                    System.IO.File.AppendAllText(fileName, parsedContent);
+                    
 
                 }
 

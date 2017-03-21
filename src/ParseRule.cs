@@ -14,4 +14,5 @@ namespace SimpleCrawler
         public string Title { get; set; }
         
     }
+    
 }

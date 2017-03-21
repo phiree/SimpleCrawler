@@ -1,0 +1,56 @@
+﻿<div class="all2">
+<div class="title"><span>网站导航:<a href="/">首页</a>--&gt;<a href="/hunan/">湖南省</a>--&gt;<a href="/hunan/hengyangshi/">衡阳市</a>--&gt;衡东县</span></div>
+<div style="width:960px;padding-top:15px">
+
+<ul>
+<li><a href="/address/430424100000.html">湖南省衡东县城关镇</a>[430424100000]</li>
+<li><a href="/address/430424101000.html">湖南省衡东县石湾镇</a>[430424101000]</li>
+<li><a href="/address/430424102000.html">湖南省衡东县新塘镇</a>[430424102000]</li>
+<li><a href="/address/430424103000.html">湖南省衡东县大浦镇</a>[430424103000]</li>
+<li><a href="/address/430424104000.html">湖南省衡东县吴集镇</a>[430424104000]</li>
+<li><a href="/address/430424105000.html">湖南省衡东县甘溪镇</a>[430424105000]</li>
+<li><a href="/address/430424106000.html">湖南省衡东县杨林镇</a>[430424106000]</li>
+<li><a href="/address/430424107000.html">湖南省衡东县草市镇</a>[430424107000]</li>
+<li><a href="/address/430424108000.html">湖南省衡东县杨桥镇</a>[430424108000]</li>
+<li><a href="/address/430424109000.html">湖南省衡东县霞流镇</a>[430424109000]</li>
+<li><a href="/address/430424110000.html">湖南省衡东县荣恒镇</a>[430424110000]</li>
+<li><a href="/address/430424111000.html">湖南省衡东县高湖镇</a>[430424111000]</li>
+<li><a href="/address/430424112000.html">湖南省衡东县白莲镇</a>[430424112000]</li>
+<li><a href="/address/430424113000.html">湖南省衡东县大桥镇</a>[430424113000]</li>
+<li><a href="/address/430424114000.html">湖南省衡东县蓬源镇</a>[430424114000]</li>
+<li><a href="/address/430424200000.html">湖南省衡东县莫井乡</a>[430424200000]</li>
+<li><a href="/address/430424201000.html">湖南省衡东县踏庄乡</a>[430424201000]</li>
+<li><a href="/address/430424202000.html">湖南省衡东县高塘乡</a>[430424202000]</li>
+<li><a href="/address/430424204000.html">湖南省衡东县南湾乡</a>[430424204000]</li>
+<li><a href="/address/430424208000.html">湖南省衡东县三樟乡</a>[430424208000]</li>
+<li><a href="/address/430424209000.html">湖南省衡东县栗木乡</a>[430424209000]</li>
+<li><a href="/address/430424210000.html">湖南省衡东县珍珠乡</a>[430424210000]</li>
+<li><a href="/address/430424211000.html">湖南省衡东县石滩乡</a>[430424211000]</li>
+<li><a href="/address/430424212000.html">湖南省衡东县德圳乡</a>[430424212000]</li>
+
+</ul>
+<script src="https://pagead2.googlesyndication.com/pub-config/r20160913/ca-pub-5372547888954499.js"></script><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5372547888954499";
+/* 地区代码广告 */
+google_ad_slot = "9095333475";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent"><iframe width="728" height="90" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins>  </div>
+<br>
+<div align="center"><h1>衡东县介绍</h1></div><br>
+
+ 
+<table width="700" border="0" cellpadding="2" align="center" cellspacing="1" bgcolor="cccccc"> <tbody><tr bgcolor="#ffffff"><td colspan="3"><strong>行政区划</strong>:白莲镇 石湾镇 新塘镇 大浦镇 吴集镇 甘溪镇 杨林镇 草市镇 霞流镇 杨桥镇 城关镇 高湖镇 德圳乡 大桥镇 蓬源镇 莫井乡 踏庄乡 高塘乡 南湾乡 三樟乡 栗木乡 珍珠乡 石滩乡 荣桓镇 </td></tr><tr bgcolor="#ffffff"><td width="230" nowrap=""><strong>长途区号</strong>:0734</td><td width="230" nowrap=""><strong>邮政编码</strong>:421000</td><td width="240"></td></tr><tr bgcolor="#ffffff"><td width="230"><strong>车牌号码</strong>:湘D</td><td width="230" nowrap=""><strong>行政代码</strong>:430424</td><td width="240" nowrap=""></td></tr><tr bgcolor="#ffffff"><td width="230"><strong>隶属政区</strong>: 衡阳</td><td nowrap="" colspan="2"><strong>行政级别</strong>:县</td></tr></tbody></table><br>
+&nbsp;&nbsp;&nbsp;&nbsp;　衡东县位于湖南东部偏南，1966年从衡山县析出新置，坐落于湘江中游的衡阳盆地和醴攸盆地之间，东临攸县，西接衡山，南濒衡南，北连株洲，地广物丰，山水含情，有“鱼米之乡”之美誉。县域面积为1926平方公里，耕地面积为50万亩，总人口67万(农业人口58.41万)，辖13镇11乡，561个村，25个居委会。地形以丘陵为主， 属亚热带季风温润气候，年平均气温17.7℃，雨量丰沛。2004年，全县完成地区生产总值达44.5亿元，县级地方财政收入11363万元。 2005年，全县完成地区生产总值达49.85亿元，县级地方财政收入20234万元
+<br>　　　　衡东具有丰富的矿产资源和浓郁地方特色的文化资源。大自然的鬼斧神工，使衡东地大物博，桃李满园。地面上，千山竞秀，万类峥嵘；地底下，物产丰富，土地生金，现已探明的矿藏有金、银、铜、铁、铅、锌、钨锰、铀、钴、镍、煤、瓷泥、萤石、石英石、重晶石等30余种，同时，民间文化底蕴丰厚，素有“皮影戏之乡”、“花鼓戏之乡”、“剪纸之乡”、“龙舟之乡”、“龙狮之乡”和“农民画之乡”的盛誉。 
+<br>　　　　衡东交通便利。京广铁路从西部纵贯而过，全长59.7公里，设有衡山等5个火车站；1843线、1820线、1815线三条省道与300多条县乡公路联为一体， 密集如网，出入通达；京珠高速公路横贯4镇2乡62.5公里，并在新塘、大浦各设一个互通口，并接长株潭，南联粤港澳，内引外连，是为对外“窗口”；洣水四季通航，湘江可行驶千吨级船舶。 
+<br>　　　　衡东水系发达，电力充裕。是全国水利建设先进县。以甘溪、洋塘、望日岩、荣桓四座河坝和德圳、白莲、早禾冲、江东四座中型水库为主体的八大灌区体系，总蓄引提水量达3.89亿立方米，境内大小河流169条，旱涝保收的面积达93％以上。 有人曾统计，若将修水利的土石修成一道高与宽各3米的长城， 可以从衡东一直通到北京。星罗棋布且成龙配置的发达水系，为大办水电提供了资源不断的水能。已建成各类水电站21处，装机70台，总容量4.33万千瓦，年平均发电量1.5亿千瓦时， 是全国第二批农村电气化达标县。加上目前电力体制改革，该县小电网并与国家大电网，电力供应更加充裕，可靠。 
+<br>　　　　衡东农业生产基础殷厚，是国家扶持的产粮大县之一。全县年均粮食总产4.2亿公斤， 是国家大型商品粮基地县。农副土特产品众多，主要有油茶、藤茶、湘莲、席草、味蛋、柑桔、松脂、竹木、淡水鱼、瘦肉型猪等，其中京湘牌藤茶、金星咸蛋王、优质松脂等农林特产远近驰名。尤其是养殖业，全年出栏牲猪平均每人1.5头，农村形成了“牛羊满山坡， 塘里鱼穿梭，村村有猪场，户户鸡鸭多”的局面，谱出了一曲令人心醉的田园牧歌。 
+<br>　　　　衡东工业发展迅速。全县国有企业、集体企业、乡镇企业、合资企业、民营企业如雨后春笋，成批涌现，竞相发展，其中县级以上的工业企业共39家，初步形成了采矿、机械、化工、陶瓷、中医药等6 大工业基地，“质量意识”、“品牌意识”逐步加强，全县已有10余种产品被评为省优、部优，其中，立德粉、机油泵、日用瓷等不仅饮誉九州，而且打入了国际市场。 
+<br>　　　　小城镇建设步伐加快。近几年，衡东县委、县政府坚持城镇建设、市场建设和工业小区“三位一体”的发展思路，大力发展小城镇，提高其整体功能，建制镇已增加到13个，域区面积增加到12平方公里。其中城关镇跻身全省经济建设“百强镇”行列，县城滨江小区建设全面启动，新塘镇被列为全省十个小城镇建设示范镇之一，经湖南省人民政府批准成立的新塘经济开发区，筑巢引风，吸引了四方商贾，已从国内外引进项目95个，引进资金2亿多元。 
+<br>　　　　衡东社会事业不断进步。衡东一中被评为“湖南省重点中学”；科技、文化、广电、土地执法工作跻身全国先进行列；医疗卫生达到初级保健标准，先后获得“全省农村卫生先进单位”和“全国环境卫生先进县”的称号，中医工作全省达标，县人民医院为“二甲”医院。
+<br>　　　　衡东山奇水秀，峰险洞幽，文化源远流长，是旅游观光的好去处。山有四峰山、杨山、灵山、二童攻书山，山林深处，斜阳阡陌，福地洞天，令人心旷神怡，乐而忘归；水有湘江、洣水，亮如明镜，绿如翡翠；洞有锡岩仙洞、六峰岩溶洞，千姿百态、绚丽多彩、形容可掬、妙趣横生；峰有晓霞峰、彩霞峰、凤凰峰、金觉峰，峰峰相顾，委迤盘旋，云蒸霞蔚，各具谐趣；遗址有龙山文化遗址、岭茶化石、罗帅故居、柴山洲特别区农民银行旧址、清代状元彭竣的“状元第”牌坊，使人抚昔追今，鉴古思今。
+<br>　　　　境内还有野生植物900多种，并有水杉、银杏、杜仲， 以及国家二级保护树种伞花木等珍贵树种，全县活立木蓄积量达110万立方米，森林覆盖率达51.7％。 野生动物有獐、麂、兔、鹿、野生猴面鹰、云豹等20余种。江山如此多娇，风景这边独好。</div>

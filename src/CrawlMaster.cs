@@ -470,6 +470,7 @@ namespace SimpleCrawler
                                 isMatchFollowRule = true;
                                 needParseContent = followRule.NeedParseContent;
                                 parseSelector = followRule.ParseSelector;
+                                break;
                             }
                             
                         }
