@@ -17,7 +17,7 @@ namespace SimpleCrawler.Demo
     using System.Collections;
     using System.Text.RegularExpressions;
     using global::TourCrawler;
-
+    using log4net;
     /// <summary>
     /// The program.
     /// </summary>
@@ -47,6 +47,8 @@ namespace SimpleCrawler.Demo
         /// </param>
         private static void Main(string[] args)
         {
+            log4net.Config.XmlConfigurator.Configure();
+
             filter = new BloomFilter<string>(200000);
 
 
@@ -301,7 +303,7 @@ namespace SimpleCrawler.Demo
             downloadedPageAmount++;
             // 在此处解析页面，可以用类似于 HtmlAgilityPack（页面解析组件）的东东、也可以用正则表达式、还可以自己进行字符串分析
         }
-
+        static ILog log = LogManager.GetLogger("datalog");
         private static void MasterDataReceivedEventDiqubianma(DataReceivedEventArgs args)
         {
 
@@ -315,10 +317,11 @@ namespace SimpleCrawler.Demo
                 for (int i = 0; i < parsedContentList.Count; i++)// string parsedContent in parsedContentList )
                 {
                     string parsedContent = parsedContentList[i]
-                        +Environment.NewLine+"---------------------------------------------------------"+Environment.NewLine;
+                        +Environment.NewLine+"-------------------";
 
                    
-                    System.IO.File.AppendAllText(fileName, parsedContent);
+                  //  System.IO.File.AppendAllText(fileName, parsedContent);
+                    log.Debug(parsedContent);
                     
 
                 }
