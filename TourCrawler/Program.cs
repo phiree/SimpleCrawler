@@ -186,8 +186,8 @@ namespace SimpleCrawler.Demo
             if (!filter.Contains(args.Url))
             {
                 filter.Add(args.Url);
-                Console.WriteLine(addedLinksAmount + args.Url);
-                addedLinksAmount++;
+               // Console.WriteLine(addedLinksAmount + args.Url);
+               // addedLinksAmount++;
                 return true;
             }
 
@@ -205,7 +205,7 @@ namespace SimpleCrawler.Demo
         private static void MasterDataReceivedEventAreaCode(DataReceivedEventArgs args)
         {
 
-            Console.WriteLine(downloadedPageAmount + "下载完毕:" + args.Url);
+         //   Console.WriteLine(downloadedPageAmount + "下载完毕:" + args.Url);
             ITargetContentParser parser = new TargetContentParserAgilityPack(args.PraseSelector);
             if (args.NeedParseContent)
             {
@@ -307,7 +307,7 @@ namespace SimpleCrawler.Demo
         private static void MasterDataReceivedEventDiqubianma(DataReceivedEventArgs args)
         {
 
-            Console.WriteLine(downloadedPageAmount + "下载完毕:" + args.Url);
+        //    Console.WriteLine(downloadedPageAmount + "下载完毕:" + args.Url);
             ITargetContentParser parser = new TargetContentParserAgilityPack(args.PraseSelector);
             if (args.NeedParseContent)
             {

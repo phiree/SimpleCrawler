@@ -159,6 +159,9 @@ namespace DiqudaimaParse
                 foreach (Match m in vallegeMatches)
                 {
                     string vallege_name = m.Groups[1].Value;
+
+
+
                     string vallege_code = m.Groups[2].Value;
 
                     AreaPostPhone vallege = new AreaPostPhone { Name = vallege_name, AreaCode = vallege_code };
@@ -185,6 +188,24 @@ namespace DiqudaimaParse
             江苏省常州市武进区横林镇前丰村村委会
             江苏省常州市武进区芙蓉镇芙蓉社区居委会
             四川省甘孜县泥柯乡
+            村委会 村名委员会 居名委员会 居委会
+
+            省 县 乡 村
+            省 县 镇 村
+            省 县 镇 居委会
+            省 县 乡 村委会
+            省 县 乡 村 村委会
+            省 市 乡 村委会
+            省 市 镇 村委会
+            省 市 区 街道 居委会
+            自治区 市 办事处
+            自治区 县 镇 村委会
+            自治区 县 镇 居委会
+            自治区 市 区 镇 村委会
+            自治区 市 区 办事处 居委会
+            自治区 市 区 镇 村委会
+            自治区 市 乡   村委会
+            自治区 市 办事处 社区
              */
             string adjusted = rawName;
 
