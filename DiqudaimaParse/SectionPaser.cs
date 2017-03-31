@@ -16,7 +16,7 @@ namespace DiqudaimaParse
     //直辖市地区, 非直辖市城市
     public class SectionParser_Level1 : SectionParser
     {
-
+      
         string re_areaname = "";
         string re_phone = "(?<=<strong>长途区号</strong>:).+?(?=</td>)";
         string re_post = "(?<=<strong>邮政编码</strong>:).+?(?=</td>)";
@@ -75,7 +75,8 @@ namespace DiqudaimaParse
     //直辖市街道, 非直辖市 区,县
     public class SectionParser_Level2 : SectionParser
     {
-
+       
+      
         string re_areaname = "";
         string re_phone = "(?<=<strong>长途区号</strong>:).+?(?=</td>)";
         string re_post = "(?<=<strong>邮政编码</strong>:).+?(?=</td>)";
@@ -177,22 +178,7 @@ namespace DiqudaimaParse
             }
             return results;
         }
-        public string AdjustName(string rawName)
-        {/*
-            江苏省徐州市贾汪区鹿庄粮棉原种场
-            江苏省徐州市贾汪区青山泉镇
-            江苏省徐州市鼓楼区丰财街道
-            江苏省常州市武进区横林镇前丰村村委会
-            江苏省常州市武进区芙蓉镇芙蓉社区居委会
-            四川省甘孜县泥柯乡
-             */
-            string adjusted = rawName;
-
-            //去除上级
-
-
-            return adjusted;
-        }
+      
     }
     //乡,镇
    
